@@ -1,0 +1,13 @@
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        int i=1;
+        while(i<=n/2){
+            i=i*2; 
+        }
+        if(i==n){
+            return true;
+        }
+        return false;
+    }
+};
