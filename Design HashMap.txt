@@ -1,0 +1,48 @@
+class MyHashMap {
+public:
+    vector<pair<int,int>> v; 
+    MyHashMap() {
+       v.clear();
+    }
+    
+    void put(int key, int value) {
+        if(v.size()==0){
+            v.push_back({key,value});
+        }
+        bool flag=false;
+        for(int i=0;i<v.size();i++){
+            if(v[i].first==key){
+                flag=true;
+                v[i].second=value;
+            }
+        }
+        if(flag==false){
+            v.push_back({key,value});
+        }
+    }
+    
+    int get(int key) {
+        for(auto p:v){
+            if(key==p.first){
+                return p.second;
+            }
+        }
+        return -1;
+    }
+    
+    void remove(int key) {
+        for(int i=0;i<v.size();i++){
+            if(v[i].first==key){    
+                v.erase(v.begin()+i);
+            }
+        }
+    }
+};
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * MyHashMap* obj = new MyHashMap();
+ * obj->put(key,value);
+ * int param_2 = obj->get(key);
+ * obj->remove(key);
+ */
