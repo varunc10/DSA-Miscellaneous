@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int OccurencesOfFive(int n){
+        int count=0;
+        while(n%5==0){
+            count++;
+            n=n/5;
+        }
+        return count;
+    }
+    int trailingZeroes(int n) {
+        int sum=0;
+        while(n!=0){
+            int a=OccurencesOfFive(n);
+            n--;
+            sum+=a;
+        }
+        return sum;
+    }
+};
