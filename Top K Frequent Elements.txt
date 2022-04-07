@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        map<int,int> m;
+        for(auto i:nums){
+            m[i]++;
+        }
+        auto cmp=[&m](int a,int b){
+            return m[a]>m[b];
+        };
+        priority_queue<int,vector<int>,decltype(cmp)> heap(cmp);
+        for(auto p:m){
+            heap.push(p.first);
+            if(heap.size()>k){
+                heap.pop();
+            }
+        }
+        vector<int> ans(k);
+        for(int i=k-1;i>=0;i--){
+            ans[i]=heap.top();
+            heap.pop();
+        }
+        return ans;
+    }
+};s
