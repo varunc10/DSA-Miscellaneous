@@ -1,0 +1,13 @@
+int Solution::solve(int A) {
+    int i=0;
+    int count=0;
+    while(i<A){
+        if(i+count+1>A){
+            i=i-count-1;
+            count++;
+        }
+        i=i+count+1;
+        count++;
+    }
+    return count;
+}
