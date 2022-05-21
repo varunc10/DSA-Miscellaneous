@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int reverse(int x) {
+        vector<int> v;
+        if(x==0){
+            return 0;
+        }
+        long ans=0;
+        bool flag=false;
+        while(x){
+            v.push_back(x%10);
+            x/=10;
+        }
+        int i;
+        for(i=0;i<v.size()-1;i++){
+            ans+=v[i];
+            ans*=10;
+        }
+        if(ans+v[i]>INT_MAX||ans+v[i]<INT_MIN){
+            return 0;
+        }
+        else{
+            ans+=v[i];
+        }
+        return ans;
+    }
+};
