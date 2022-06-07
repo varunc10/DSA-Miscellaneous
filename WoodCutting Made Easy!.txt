@@ -1,0 +1,27 @@
+bool check(vector<int> &A,int k,int B){
+    int sum=0;
+    for(auto i:A){
+        if(i>k){
+            sum+=i-k;
+        }
+    }
+    if(sum>=B){
+        return true;
+    }
+    return false;
+}
+int Solution::solve(vector<int> &A, int B) {
+    int i=0,j=1000000;
+    int ans=0;
+    while(i<=j){
+        int m=(i+j)/2;
+        if(check(A,m,B)){
+            ans=m;
+            i=m+1;
+        }
+        else{
+            j=m-1;
+        }
+    }
+    return ans;
+}
