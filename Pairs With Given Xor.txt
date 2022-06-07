@@ -1,0 +1,14 @@
+int Solution::solve(vector<int> &A, int B) {
+    int ans=0;
+    multimap<int,int> m;
+    for(int i=0;i<A.size();i++){
+        int k=m.count(A[i]^B);
+        if(k==0){
+            m.insert({A[i],i});
+        }
+        else{
+            ans+=k;
+        }
+    }
+    return ans;
+}
