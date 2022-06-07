@@ -1,0 +1,17 @@
+string Solution::getPermutation(int A, int B) {
+    vector<int> v;
+    int i=1;
+    string s="";
+    while(i<=A){
+        v.push_back(i);
+        i++;
+    }
+    while(B>1){
+        next_permutation(v.begin(),v.end());
+        B--;
+    }
+    for(auto i:v){
+        s+=to_string(i);
+    }
+    return s;
+}
