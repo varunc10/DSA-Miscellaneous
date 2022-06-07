@@ -1,0 +1,14 @@
+vector<int> Solution::solve(vector<int> &A) {
+    multimap<int,int> m;
+    for(int i=0;i<A.size();i++){
+        if(m.find(A[i])==m.end()){
+            m.insert({A[i],i});
+        }
+        else{
+            auto it=find(A.begin(),A.end(),A[i]);
+            A[it-A.begin()]++;
+            m.insert({A[it-A.begin()],it-A.begin()});
+        }
+    }
+    return A;
+}
