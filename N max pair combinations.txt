@@ -1,0 +1,34 @@
+vector<int> Solution::solve(vector<int> &A, vector<int> &B) {
+    sort(A.begin(),A.end(),greater<int>());
+    sort(B.begin(),B.end(),greater<int>());
+    multiset<int,greater<int>> s;
+    vector<int> v;
+    set<int>::iterator last;
+    // set<pair<int,int> s;
+    // s.insert(0,0);
+    for(int i=0;i<A.size();i++){
+        for(int j=0;j<B.size();j++){
+            if(s.size()<A.size()){
+                s.insert(A[i]+B[j]);
+                auto l=s.end();
+                l--;
+                last=l;
+            }
+            else{
+                if(*last<(A[i]+B[j])){
+                    s.insert(A[i]+B[j]);
+                    last--;
+                }
+                else{
+                    break;
+                }
+            }
+        }
+    }
+    int k=A.size();
+    while(k--){
+        v.push_back(*(s.begin()));
+        s.erase(s.begin());
+    }
+    return v;
+}
