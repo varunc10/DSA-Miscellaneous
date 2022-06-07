@@ -1,0 +1,25 @@
+int Solution::solve(vector<int> &A, int B) {
+    int i=0,j=0;
+    for(auto x:A){
+        i=max(i,x);
+        j+=x;
+    }
+    while(i<=j){
+        int mid=(i+j)/2;
+        int days=1,sum=0;
+        for(auto i:A){
+            if(sum+i>mid){
+                days++;
+                sum=0;
+            }
+            sum+=i;
+        }
+        if(days>B){
+            i=mid+1;
+        }
+        else{
+            j=mid-1;
+        }
+    }
+    return i;
+}
