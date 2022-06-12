@@ -1,0 +1,14 @@
+int Solution::solve(vector<int> &A, int B) {
+    // unordered_map<int,int> m;
+    int i=0,j=0,sum=0,count=0;
+    while(i<A.size()){
+        sum+=A[i];
+        while(sum>=B){
+            sum-=A[j];
+            j++;
+        }
+        i++;
+        count+=i-j;
+    }
+    return count;
+}
