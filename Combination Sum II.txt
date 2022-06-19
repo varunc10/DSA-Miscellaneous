@@ -1,0 +1,29 @@
+class Solution {
+public:
+    void helper(vector<int>& A,vector<vector<int>>& ans,vector<int>& v,int i,int target){
+        if(target<=0){
+            if(target==0){
+                ans.push_back(v);
+                return;
+            }
+            return;
+        }
+        for(int j=i;j<A.size();j++){
+            if(j!=i&&A[j]==A[j-1]){
+                continue;
+            }
+            if(A[j]<=target){
+                v.push_back(A[j]);
+                helper(A,ans,v,j+1,target-A[j]);
+                v.pop_back();
+            }
+        }
+    }
+    vector<vector<int>> combinationSum2(vector<int>& A, int target) {
+        sort(A.begin(),A.end());
+        vector<vector<int>> ans;
+        vector<int> v;
+        helper(A,ans,v,0,target);
+        return ans;
+    }
+};
