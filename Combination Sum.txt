@@ -1,0 +1,29 @@
+class Solution {
+public:
+    void helper(vector<int>& A,vector<vector<int>>& ans,vector<int>& v,int i,int sum,int target){
+        if(sum>target){
+            return;
+        }
+        if(sum==target){
+            ans.push_back(v);
+            return;
+        }
+        else if(i==A.size()){
+            return;
+        }
+        if(A[i]<=target){
+            sum+=A[i];
+            v.push_back(A[i]);
+            helper(A,ans,v,i,sum,target);
+            sum-=A[i];
+            v.pop_back();
+        }
+        helper(A,ans,v,i+1,sum,target);
+    }
+    vector<vector<int>> combinationSum(vector<int>& A, int target) {
+        vector<vector<int>> ans;
+        vector<int> v;
+        helper(A,ans,v,0,0,target);
+        return ans;
+    }
+};
