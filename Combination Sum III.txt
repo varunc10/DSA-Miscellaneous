@@ -1,0 +1,30 @@
+class Solution {
+public:
+    void helper(vector<int>& A,vector<vector<int>>& ans,vector<int>& v,int i,int k,int n){
+        if(v.size()==k){
+            if(n==0){
+                ans.push_back(v);
+                return;
+            }
+            else{
+                return;
+            }
+        }
+        if(i==A.size()){
+            return;
+        }
+        if(A[i]<=n){
+            v.push_back(A[i]);
+            helper(A,ans,v,i+1,k,n-A[i]);
+            v.pop_back();
+        }
+        helper(A,ans,v,i+1,k,n);
+    }
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<int> A{1,2,3,4,5,6,7,8,9};
+        vector<vector<int>> ans;
+        vector<int> v;
+        helper(A,ans,v,0,k,n);
+        return ans;
+    }
+};
