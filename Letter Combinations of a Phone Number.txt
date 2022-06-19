@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void helper(string &digits,vector<string>& A,vector<string>& ans,string v,int i){
+        if(i==digits.size()){
+            ans.push_back(v);
+            return;
+        }
+        int k=digits[i]-'0';
+        for(int j=0;j<A[k].size();j++){
+            v.push_back(A[k][j]);
+            helper(digits,A,ans,v,i+1);
+            v.pop_back();
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        if(digits.size()==0){
+            return {};
+        }
+        vector<string> A{"1","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        vector<string> ans;
+        string v;
+        helper(digits,A,ans,v,0);
+        return ans;
+    }
+};
