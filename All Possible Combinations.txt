@@ -1,0 +1,17 @@
+void helper(vector<string> &A,vector<string> &ans,string &v,int i){
+    if(i==A.size()){
+        ans.push_back(v);
+        return;
+    }
+    for(int j=0;j<A[i].size();j++){
+        v.push_back(A[i][j]);
+        helper(A,ans,v,i+1);
+        v.pop_back();
+    }
+}
+vector<string> Solution::specialStrings(vector<string> &A) {
+    vector<string> ans;
+    string v;
+    helper(A,ans,v,0);
+    return ans;
+}
