@@ -1,0 +1,25 @@
+void helper(vector<int>& n,vector<vector<int>>& ans,vector<int>& v,int i,int B){
+    if(v.size()==B){
+        ans.push_back(v);
+        return;
+    }
+    if(i==n.size()){
+        return;
+    }
+    v.push_back(n[i]);
+    helper(n,ans,v,i+1,B);
+    v.pop_back();
+    helper(n,ans,v,i+1,B);
+}
+vector<vector<int> > Solution::combine(int A, int B) {
+    vector<int> n;
+    int i=1;
+    while(i<=A){
+        n.push_back(i);
+        i++;
+    }
+    vector<vector<int>> ans;
+    vector<int> v;
+    helper(n,ans,v,0,B);
+    return ans; 
+}
