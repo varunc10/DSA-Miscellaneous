@@ -1,0 +1,26 @@
+static bool mycmp(Job a,Job b){
+        return a.profit>b.profit;
+    }
+    vector<int> JobScheduling(Job arr[], int n) 
+    { 
+        // your code here
+        sort(arr,arr+n,mycmp);
+        int count=0,ans=0,maxi=INT_MIN;
+        for(int i=0;i<n;i++){
+            if(maxi<arr[i].dead){
+                maxi=arr[i].dead;
+            }
+        }
+        vector<int> vis(maxi+1,-1);
+        for(int i=0;i<n;i++){
+            for(int j=arr[i].dead;j>0;j--){
+                if(vis[j]==-1){
+                    vis[j]=1;
+                    count++;
+                    ans+=arr[i].profit;
+                    break;
+                }
+            }
+        }
+        return {count,ans};
+    } 
